@@ -1,5 +1,6 @@
 
 using EasyBurger.API.Infra.Contexts;
+using EasyBurger.API.Infra.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,8 @@ builder.Services.AddDbContext<ApiContext>(options =>
     var conString = builder.Configuration.GetConnectionString("MySql");
     options.UseMySql(conString, ServerVersion.AutoDetect(conString));
 });
+
+builder.Services.AddTransient<ProductRepository>();
 
 var app = builder.Build();
 
